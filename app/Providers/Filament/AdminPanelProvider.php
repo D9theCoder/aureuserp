@@ -1,5 +1,5 @@
 <?php
-
+// 
 namespace App\Providers\Filament;
 
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
@@ -10,6 +10,7 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\NavigationGroup;
 use Filament\Panel;
 use Filament\PanelProvider;
+use Filament\Support\Assets\Css;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\Width;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -34,9 +35,9 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->favicon(asset('images/favicon.ico'))
-            ->brandLogo(asset('images/logo-light.svg'))
-            ->darkModeBrandLogo(asset('images/logo-dark.svg'))
-            ->brandLogoHeight('2rem')
+            ->brandLogo(fn () => view('filament.admin.logo'))
+            ->darkModeBrandLogo(fn () => view('filament.admin.logo'))
+            ->brandLogoHeight('14rem')
             ->passwordReset()
             ->emailVerification()
             ->profile()
